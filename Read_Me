@@ -1,0 +1,9 @@
+if any error occures in any programs first try removing line: setbuf(stdout, NULL);
+and then run!!!
+its because i use npp with gcc 
+for statement
+
+printf("Enter The Number: ");
+scanf("%d",&n);
+
+on my pc without "setbuf()" line it runs "scanf" line first and "printf" later
