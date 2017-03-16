@@ -43,7 +43,7 @@ void calc(int n)
 	a[0].st = 0;
     a[0].ct = a[0].bt;
 	a[0].tat = a[0].ct - a[0].at;
-	a[0].wt = a[0].tat - a[0].bt;
+	a[0].wt = 0;
     for(i=1;i<n;i++)
     {
 	    a[i].st = a[i-1].ct; 
