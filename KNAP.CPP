@@ -156,13 +156,7 @@ void main()
     int choice;
     cout << "which one? " << endl;
     switch(choice)
-    {
-	 case 1:
-
-
-
-
-    }
+ 
 
 
 
