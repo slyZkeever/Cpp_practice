@@ -1,0 +1,15 @@
+/*
+return function(arg1, arg2)
+{ 
+    obj of the function
+	pre-condition:
+	post-condition:
+
+    a function must have a pre/post condition check-ups or at least written as comment to reduce errors
+
+    arg1 & arg2 > 0 and arg1 = arg2*4 <- this is a pre-condition required by function to generate correct output
+
+	post-condition is a check up to see whether the return value is accurate or not
+}
+*/
+
