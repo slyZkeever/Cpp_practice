@@ -1,3 +1,4 @@
 ﻿  Source.cpp
+e:\git\vs2015\ppp_practice\ppp_practice\source.cpp(22): warning C4715: 'recurz': not all control paths return a value
   PPP_Practice.vcxproj -> E:\Git\VS2015\PPP_Practice\Debug\PPP_Practice.exe
   PPP_Practice.vcxproj -> E:\Git\VS2015\PPP_Practice\Debug\PPP_Practice.pdb (Full PDB)

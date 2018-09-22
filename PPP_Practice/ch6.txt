@@ -1,0 +1,14 @@
+/*int lval = 0, rval = 0;
+	char op;
+	int res;
+	cout << "Expression: ";
+	cin >> lval >> op >> rval;
+	if (op == '+')
+	{
+	    res = lval + rval;
+	}
+	if (op == '-')
+	{
+	    res = lval - rval;
+	}
+	cout << res << endl;*/

@@ -28,5 +28,8 @@
     <Text Include="ch5.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="ch6.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
