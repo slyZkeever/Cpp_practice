@@ -1,14 +1,244 @@
-/*int lval = 0, rval = 0;
-	char op;
-	int res;
-	cout << "Expression: ";
-	cin >> lval >> op >> rval;
-	if (op == '+')
+int lval = 0, rval = 0;
+
+	std::cout << "Expression(X to end):  ";
+	std::cin >> lval;
+
+	for (char op = 0; std::cin >> op;)
 	{
-	    res = lval + rval;
+		if(op != 'x')
+		    std::cin >> rval;
+
+		switch (op)
+		{
+		case '+':
+			lval = lval + rval;
+			break;
+
+		case '-':
+			lval = lval - rval;
+			break;
+
+		case '*':
+			lval = lval * rval;
+			break;
+
+		case '/':
+			lval = lval / rval;
+			break;
+
+		case '%':
+			lval = lval % rval;
+			break;
+
+		case 'x': default:
+			std::cout << "result: " << lval << std::endl;
+
+			return 0;
+		}
+		
 	}
-	if (op == '-')
+
+
+
+	class token
 	{
-	    res = lval - rval;
+	public:
+		char kind;
+		int value;
+	};
+
+	/*token t;
+	t.kind = '+';
+	cout << t.kind << endl;
+
+	token t2; 
+	t2.kind = '8';
+	t2.value = 3.14;
+
+	token tt = t;
+	cout << tt.kind << " " << tt.value << endl;
+
+	t = t2;
+	cout << t.value << endl;
+*/
+
+
+//double left = 5;
+//left %= 2; //cant use double
+//switch(left) //cant use double
+
+/* calculator01.cpp
+//
+// This is example code from Chapter 6.6 "Trying the first version" of
+// "Software - Principles and Practice using C++" by Bjarne Stroustrup
+//
+
+#include "std_lib_facilities.h"
+
+//------------------------------------------------------------------------------
+
+class Token {
+public:
+	char kind;        // what kind of token
+	double value;     // for numbers: a value 
+	Token(char ch)    // make a Token from a char
+		:kind(ch), value(0) { }
+	Token(char ch, double val)     // make a Token from a char and a double
+		:kind(ch), value(val) { }
+};
+
+//------------------------------------------------------------------------------
+
+Token get_token()    // read a token from cin
+{
+	char ch;
+	cin >> ch;    // note that >> skips whitespace (space, newline, tab, etc.) pops the value from input stream and stores it in ch, while the "read" pointer moves to the next block.
+
+	switch (ch) 
+	{
+		//not yet   case ';':    // for "print"
+		//not yet   case 'q':    // for "quit"
+	case '(': case ')': case '+': case '-': case '*': case '/':
+		return Token(ch);        // let each character represent itself
+	case '.':
+	case '0': case '1': case '2': case '3': case '4':
+	case '5': case '6': case '7': case '8': case '9':
+	{
+		cin.putback(ch);          // put digit back into the input stream. takes the value from ch, move the "read" pointer in input stream and go back to previous block and store ch.
+		double val;               
+		cin >> val;               // read a floating-point number. pops the first value from input stream and stores it in val, while the "read" pointer moves to the next block.
+		return Token('8', val);   // let '8' represent "a number"
 	}
-	cout << res << endl;*/
+	default:
+		error("Bad token");
+		return NULL;
+	}
+}
+
+//------------------------------------------------------------------------------
+
+double expression();  // read and evaluate a Expression
+
+					  //------------------------------------------------------------------------------
+
+double term();        // read and evaluate a Term
+
+					  //------------------------------------------------------------------------------
+
+double primary();      // read and evaluate a Primary
+
+//------------------------------------------------------------------------------
+
+int main()
+try {
+	while (cin)
+		cout <<"Result: " << expression() << '\n';
+	keep_window_open("~0");
+}
+catch (exception& e) {
+	cerr << e.what() << endl;
+	keep_window_open("~1");
+	return 1;
+}
+catch (...) {
+	cerr << "exception \n";
+	keep_window_open("~2");
+	return 2;
+}
+
+//------------------------------------------------------------------------------
+
+double primary()
+{
+	Token t = get_token();
+	std::cout << "Token in primary: " << t.kind << std::endl;
+	switch (t.kind) 
+	{
+	case '(':    // handle '(' expression ')'
+	{
+		double d = expression();
+		t = get_token();
+		if (t.kind != ')') error("')' expected");
+		return d;
+	}
+	case '8':            // we use '8' to represent a number
+		return t.value;  // return the number's value
+	default:
+		error("primary expected");
+		return NULL;
+	}
+}
+//------------------------------------------------------------------------------
+
+double term() //error
+{
+	double left = primary();
+	Token t = get_token();     // get the next token
+	std::cout << "Token in term: " << t.kind << std::endl;
+	while (true) 
+	{
+		switch (t.kind) 
+		{
+		case '*':
+			left *= primary();
+			t = get_token();
+			break;
+		case '/':
+		{
+			double d = primary();
+			if (d == 0) error("divide by zero");
+			left /= d;
+			t = get_token();
+			break;
+		}
+		default:
+			return left;
+		}
+	}
+}
+//------------------------------------------------------------------------------
+
+double expression()
+{
+	double left = term();      // read and evaluate a Term
+	Token t = get_token();     // get the next token
+	std::cout << "Token in expression: " << t.kind << std::endl;
+	while (true) 
+	{
+		switch (t.kind) 
+		{
+		case '+':
+			left += term();    // evaluate Term and add
+			t = get_token();
+			break;
+		case '-':
+			left -= term();    // evaluate Term and subtract
+			t = get_token();
+			break;
+		default:
+			return left;       // finally: no more + or -: return the answer
+		}
+	}
+}
+//------------------------------------------------------------------------------
+*/
+
+//this is where the main moto of the file is declared
+
+//#include "std_lib_facilities.h"
+
+
+/*int main()
+{
+	cout << "Greetings programs" << endl;*/
+
+	
+	
+	//throw runtime_error("abc");
+	//cin.get();
+
+}*/
+
+
+	
+
