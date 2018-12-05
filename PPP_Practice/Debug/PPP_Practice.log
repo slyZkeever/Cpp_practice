@@ -1,4 +1,4 @@
 ﻿  Source.cpp
-e:\git\vs2015\ppp_practice\ppp_practice\source.cpp(166): warning C4715: 'Token_stream::get': not all control paths return a value
-  PPP_Practice.vcxproj -> E:\Git\VS2015\PPP_Practice\Debug\PPP_Practice.exe
-  PPP_Practice.vcxproj -> E:\Git\VS2015\PPP_Practice\Debug\PPP_Practice.pdb (Full PDB)
+e:\git\vs2015\programming-principles-and-practice-using-c-\ppp_practice\source.cpp(170): warning C4715: 'Token_stream::get': not all control paths return a value
+  PPP_Practice.vcxproj -> E:\Git\VS2015\programming-principles-and-practice-using-C-\Debug\PPP_Practice.exe
+  PPP_Practice.vcxproj -> E:\Git\VS2015\programming-principles-and-practice-using-C-\Debug\PPP_Practice.pdb (Full PDB)
