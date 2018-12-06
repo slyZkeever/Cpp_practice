@@ -90,11 +90,13 @@ int main()
 
 //------------------------------------------------------------------------------
 
-class Token{
+class Token
+{
 public:
 	char kind;        // what kind of token
 	double value;     // for numbers: a value 
-	Token(char ch)    // make a Token from a char
+	
+    Token(char ch)    // make a Token from a char
 		:kind(ch), value(0) { }
 	Token(char ch, double val)     // make a Token from a char and a double
 		:kind(ch), value(val) { }
@@ -120,8 +122,7 @@ Token_stream ts;        // provides get() and putback()
 
 
 // The constructor just sets full to indicate that the buffer is empty.
-Token_stream::Token_stream()  
-	:full(false), buffer(0)   // no Token in buffer
+Token_stream::Token_stream() : full(false), buffer(0) // no Token in buffer
 {}
 //------------------------------------------------------------------------------
 
@@ -137,16 +138,17 @@ void Token_stream::putback(Token t)
 
 Token Token_stream::get()
 {
-	if (full) {       // do we already have a Token ready?
-					  // remove token from buffer
-		full = false;
+	if (full) // do we already have a Token ready?
+	{  
+		full = false;  // remove token from buffer
 		return buffer;
 	}
 
 	char ch;
 	cin >> ch;    // note that >> skips whitespace (space, newline, tab, etc.)
 
-	switch (ch) {
+	switch (ch) 
+	{
 	case ';':    // for "print"
 
 	case 'q':    // for "quit"
@@ -189,6 +191,7 @@ double primary()                // deal with numbers and parentheses
 	}
 	case '8':            // we use '8' to represent a number
 		return t.value;  // return the number's value
+	
 	default:
 		error("primary expected");
 		return NULL;
@@ -203,7 +206,8 @@ double term()                  // deal with *, /, and %
 	double left = primary();
 	Token t = ts.get();        // get the next token from token stream
 
-	while (true) {
+	while (true) 
+	{
 		switch (t.kind) {
 		case '*':
 			left *= primary();
