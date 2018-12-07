@@ -12,4 +12,3 @@ return function(arg1, arg2)
 	post-condition is a check up to see whether the return value is accurate or not
 }
 */
-
