@@ -170,7 +170,7 @@ If that gets tedious, compare the code to that in the book (or posted source cod
 Happy hunting!
 
 prob: "-" in expression() do "+", main() doesn't have {}, "case '8'" missing in get(), no "break;" in "case '*'" in term()
-*/
+
 
 #include "std_lib_facilities.h"
 
