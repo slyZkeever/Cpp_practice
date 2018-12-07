@@ -152,11 +152,13 @@ int main()
 }*/
 
 
+
+/*
 // This is example code from Chapter 6.7 "Trying the second version" of
 // "Software - Principles and Practice using C++" by Bjarne Stroustrup
 //
 
-/*
+
 This file is known as calculator02buggy.cpp
 
 I have inserted 5 errors that should cause this not to compile
@@ -167,7 +169,7 @@ If that gets tedious, compare the code to that in the book (or posted source cod
 
 Happy hunting!
 
-prob: "-" in expression do "+", main doesn't have {}, case '8' missing in get(), no break; in "*" in term()
+prob: "-" in expression() do "+", main() doesn't have {}, "case '8'" missing in get(), no "break;" in "case '*'" in term()
 */
 
 #include "std_lib_facilities.h"
