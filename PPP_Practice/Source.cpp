@@ -117,6 +117,13 @@ double primary()
 	}
 	case '8':            // we use '8' to represent a number
 		return t.value;  // return the number's value
+
+	case '-':
+		return - primary();
+
+	case '+':
+		return + primary();
+
 	default:
 		error("primary expected");
 		return NULL;
@@ -144,6 +151,21 @@ double term()
 			double d = primary();
 			if (d == 0) error("divide by zero");
 			left /= d;
+			t = ts.get();
+			break;
+		}
+		case '%':
+		{
+			double d = primary();
+			if (d == 0) error("divide by zero");
+			left = fmod(left, d); //fmod(cmath) = floting point modulo 
+			
+			/* or prohibit the modulo of floting point integers by narrowcasting them to int
+			int i1 = narrow_cast<int>(left);
+			int i2 = narrow_cast<int>(primary());
+			left = i1 % i2;
+			*/
+			
 			t = ts.get();
 			break;
 		}
@@ -192,26 +214,38 @@ int main()
 		{
 			Token t = ts.get();
 
-			if (t.kind == 'x') break;      // 'x' for quit
-			if (t.kind == '=')             // '=' for "print now"
-				cout << "=" << val << '\n';
-			else
-				ts.putback(t);
-			val = expression();
+			while (t.kind == '=')  
+				t = ts.get();         // '=' for "print now"
+			if (t.kind == 'x')        // 'x' for quit
+			{
+				keep_window_open();
+				return 0;
+			}
+
+			ts.putback(t);
+			cout << "=" << expression() << '\n';
 		}
 
 		keep_window_open();
+		return 0;
 	}
 	catch (exception& e)
 	{
 		cerr << "error: " << e.what() << '\n';
-		keep_window_open();
-		return 1;
+		keep_window_open("~~");
+		/*char ch;
+		cout << "Type ~ to close the window" << endl;
+			while (cin >> ch)
+			{
+				if (ch == '~')
+					return 1;
+			}*/
+		return 1; //this return wouldn't be called because the previous loop will never end until '~' is passed to it.
 	}
 	catch (...)
 	{
 		cerr << "Oops: unknown exception!\n";
-		keep_window_open();
+		keep_window_open("~~");
 		return 2;
 	}
 
