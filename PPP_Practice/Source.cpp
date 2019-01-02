@@ -13,6 +13,42 @@ int main()
 
 //------------------------------------------------------------------------------
 
+/*grammar for code
+
+Statement:
+    Expression
+    Print
+    Quit
+
+Print:
+    =
+	
+Quit:
+    x
+
+Expression:
+    Term
+    Expression + Term
+    Expression – Term
+
+Term:
+    Primary
+    Term * Primary
+    Term / Primary
+    Term % Primary
+
+Primary:
+    Number
+    ( Expression )
+    – Primary
+    + Primary
+
+Number:
+    floating-point-literal
+
+Input comes from cin through the Token_stream called ts.
+*/
+
 class Token
 {
 public:
@@ -57,6 +93,10 @@ void Token_stream::putback(Token t)
 
 //------------------------------------------------------------------------------
 
+const char number = '8'; //t.kind == '8' means that t is a number token
+const char print = '='; //t.kind == '8' means that t is a print token
+const char quit = 'x'; //t.kind == 'x' means that t is a exit token
+
 Token Token_stream::get()
 {
 	if (full)            // do we already have a Token ready?
@@ -70,10 +110,16 @@ Token Token_stream::get()
 
 	switch (ch)
 	{
-	case '=':    // for "print". wont recognize this as default case.
-	case 'x':    // for "quit". wont recognize this as default case.
+	case print:    //wont recognize this as default case.
+	case quit:    //  wont recognize this as default case.
 
-	case '(': case ')': case '+': case '-': case '*': case '/':
+	case '(': //let each character represent themselves
+	case ')': 
+	case '+': 
+	case '-': 
+	case '*': 
+	case '/': 
+	case '%':
 		return Token(ch);        // A token is created of that character. let each character represent itself
 
 	case '.':   //wont recognize this as default case.
@@ -83,8 +129,8 @@ Token Token_stream::get()
 	{
 		cin.putback(ch);         // put digit back into the input stream
 		double val = 0;
-		cin >> val;              // read a floating-point number. previously read char is converted into double.
-		return Token('8', val);   // let '8' represent "a number"
+		cin >> val;                   // read a floating-point number. previously read char is converted into double.
+		return Token(number, val);   
 	}
 	default:
 		error("Bad token");
@@ -102,8 +148,7 @@ double expression();    // declaration so that primary() can call expression()
 
 						//------------------------------------------------------------------------------
 
-						// deal with numbers and parentheses
-double primary()
+double primary()       // deal with numbers and parentheses
 {
 	Token t = ts.get();
 	switch (t.kind)
@@ -115,7 +160,7 @@ double primary()
 		if (t.kind != ')') error("')' expected");
 		return d;
 	}
-	case '8':            // we use '8' to represent a number
+	case number:            // we use '8' to represent a number
 		return t.value;  // return the number's value
 
 	case '-':
@@ -205,27 +250,37 @@ double expression()
 
 //------------------------------------------------------------------------------
 
-int main()
+void calculate()
 {
-	try
+	double val = 0;
+	cout << "('=' to print, 'x' to quit) \n" << "> ";
+	while (cin) //always will ask for input. infinite loop.
 	{
-		double val = 0;
-		while (cin) //always will ask for input. infinite loop.
+		try
 		{
 			Token t = ts.get();
 
-			while (t.kind == '=')  
-				t = ts.get();         // '=' for "print now"
-			if (t.kind == 'x')        // 'x' for quit
-			{
-				keep_window_open();
-				return 0;
-			}
+			while (t.kind == print)
+				t = ts.get();
+
+			if (t.kind == quit)
+				return;
 
 			ts.putback(t);
 			cout << "=" << expression() << '\n';
 		}
+		catch (const std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}
+}
 
+int main()
+{
+	try
+	{
+		calculate();
 		keep_window_open();
 		return 0;
 	}
